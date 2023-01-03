@@ -4,7 +4,13 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
 
   :root {
-    --black: #000000E5;
+    --black: #000000;
+    --white: #FFFFFF;
+    --gray: #BDB9B9;
+  }
+
+  body {
+    font-family: 'Poppins';
   }
 
   * {
