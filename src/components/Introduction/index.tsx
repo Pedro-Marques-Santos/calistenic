@@ -1,13 +1,13 @@
 import { Base, ButtonStart, CoachContent, Container, Emoji, ImgPeaplo, Instructor, Name, TextInitial, TypeCoach, TypeTraining } from "./styles";
 
-import peaplo from "../../images/peaplo-test.png"
+import peaple from "../../images/peaplo-test.png"
 
 export function Introduction() {
   return (
     <Base>
       <Container>
         <ImgPeaplo>
-          <img src={peaplo} alt="" />
+          <img src={peaple} alt="" />
         </ImgPeaplo>
         <TextInitial>
           <TypeTraining>Military Training for Beginners</TypeTraining>
