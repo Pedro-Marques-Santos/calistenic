@@ -5,6 +5,7 @@ export const GlobalStyle = createGlobalStyle`
 
   :root {
     --black: #000000;
+    --black-light: #00000040;
     --white: #FFFFFF;
     --gray: #BDB9B9;
     --white-gray: #FFFFFFCC;
@@ -13,7 +14,9 @@ export const GlobalStyle = createGlobalStyle`
     --purple-dark: #131836;
     --purple: #3D4AAB;
     --dark: #00000040;
-;
+    --blue-light: #92acc7;
+    --blue-dark: #242456;
+    --blue-extreme-dark: #0E0E30;
   }
 
   body {
