@@ -1,9 +1,10 @@
+import { Bestexercise } from "../Bestexercise";
 import { Container } from "./styles";
 
 export function Allexercise() {
   return (
     <Container>
-      <div>teste</div>
+      <Bestexercise />
     </Container>
   );
 }

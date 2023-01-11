@@ -28,4 +28,12 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
+
+  .slick-next:before, .slick-prev:before {
+    font-size: 28px;
+    line-height: 1;
+    color: #ffb500;
+    opacity: 0.88;
+}
+
 `;

@@ -1,0 +1,47 @@
+import styled from "styled-components";
+
+export const Container = styled.div`
+`
+
+export const ImgLogo = styled.div`
+  display: flex;
+  justify-content: center;
+  img {
+    max-width: 400px;
+    min-width: 220px;
+    object-fit: cover;
+  }
+`
+
+export const TypeExercise = styled.div`
+  font-family: 'Gotu', sans-serif;
+  font-size: 19px;
+  display: flex;
+  justify-content: center;
+  color: white;
+  margin-top: -40px;
+`
+
+export const CarouselContainer = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 30px;
+  div {
+    img {
+      cursor: pointer;
+      margin: 0 auto;
+      box-shadow: 0px 4px 4px 0px #00000040;
+      object-fit: cover;
+      @media (max-width: 500px) {
+        width: 92%;
+      } 
+    }
+  }
+  @media (max-width: 900px) {
+    max-width: 400px;
+  }
+
+  @media (max-width: 500px) {
+    max-width: 240px;
+  }
+`
