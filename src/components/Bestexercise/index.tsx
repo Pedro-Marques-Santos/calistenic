@@ -76,7 +76,6 @@ export function Bestexercise() {
           </div>
         </Slider>
       </CarouselContainer>
-      awd
     </Container>
   );
 }

@@ -18,7 +18,7 @@ export const TypeExercise = styled.div`
   font-size: 19px;
   display: flex;
   justify-content: center;
-  color: white;
+  color: var(--white);
   margin-top: -40px;
 `
 
@@ -30,7 +30,7 @@ export const CarouselContainer = styled.div`
     img {
       cursor: pointer;
       margin: 0 auto;
-      box-shadow: 0px 4px 4px 0px #00000040;
+      box-shadow: 0px 4px 4px 0px var(--dark);
       object-fit: cover;
       @media (max-width: 500px) {
         width: 92%;
