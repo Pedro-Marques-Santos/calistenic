@@ -28,8 +28,12 @@ export const ItemMenu = styled.div`
 
 export const Profile = styled.div`
   cursor: pointer;
-  background: var(--white);
-  width: 54px;
-  height: 56px;
+  width: 74px;
+  height: 60px;
   border-radius: 100%;
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+  }
 `

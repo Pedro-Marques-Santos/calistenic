@@ -34,8 +34,6 @@ export function Bestexercise() {
     };
   });
 
-  console.log(windowWidth)
-
   if (windowWidth < 900) {
     settings = {
       infinite: false,

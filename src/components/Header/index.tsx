@@ -1,18 +1,31 @@
 import { Container, ItemMenu, Menu, Profile } from "./styles";
 
-export function Header() {
+import imgprofile from '../../images/profile.jpg'
 
-  function openNavbar() {
-    console.log('aqui')
+interface HeaderProps {
+  openNavbar: () => void;
+  closeNavbar: () => void;
+  stateNavbarMenu: boolean
+}
+
+export function Header({ openNavbar, closeNavbar, stateNavbarMenu }: HeaderProps) {
+
+  function openNavbarMenu() {
+    openNavbar();
+    if (stateNavbarMenu === true) {
+      closeNavbar();
+    }
   }
 
   return (
     <Container>
       <Menu>
-        <ItemMenu onClick={openNavbar}><i className="fa-solid fa-bars"></i></ItemMenu>
+        <ItemMenu onClick={openNavbarMenu}><i className="fa-solid fa-bars"></i></ItemMenu>
         <ItemMenu><i className="fa-solid fa-bell"></i></ItemMenu>
         <ItemMenu><i className="fa-solid fa-gear"></i></ItemMenu>
-        <Profile></Profile>
+        <Profile>
+          <img src={imgprofile} alt="" />
+        </Profile>
       </Menu>
     </Container>
   );
