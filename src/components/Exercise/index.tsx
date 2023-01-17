@@ -1,9 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Base, Cardcontent, Container, Difficulty, Level, Muscles, Video } from "./styles";
 
 import teste from "../../videosexercicios/teste5.mp4"
-
-//{/* <video src={Video} controls /> */}
 
 export function Exercise() {
   return (

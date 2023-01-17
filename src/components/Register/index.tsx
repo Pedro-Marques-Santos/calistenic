@@ -1,8 +1,17 @@
 import { Base, ButtonGoogle, ButtonLogin, ButtonRegister, Container, ErrorOrPassword, ImgLogo, Input, Error } from "./styles";
 import logo from '../../images/logo-final.png';
 import google from '../../images/Google.svg';
+import { useContext } from "react";
+import { AuthenticationContext } from "../../context/authentication";
 
 export function Register() {
+
+  const authentication = useContext(AuthenticationContext);
+
+  function goStateLogin() {
+    authentication?.dispatch({ type: "LOGAR" });
+  }
+
   return (
     <Base>
       <Container>
@@ -24,7 +33,7 @@ export function Register() {
         <ButtonRegister>
           Register
         </ButtonRegister>
-        <ButtonLogin>
+        <ButtonLogin onClick={goStateLogin}>
           Login
         </ButtonLogin>
         <ButtonGoogle>
