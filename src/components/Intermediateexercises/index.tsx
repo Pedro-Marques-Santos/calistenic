@@ -1,9 +1,9 @@
 import { Container, ContainerExercise, Exercise, TypeExercise } from "./styles";
 
-import img1 from '../../imagesintermediate/img1.svg'
-import img2 from '../../imagesintermediate/img2.svg'
-import img3 from '../../imagesintermediate/img3.svg'
-import img4 from '../../imagesintermediate/img4.svg'
+import img1 from '../../assets/imagesintermediate/img1.svg'
+import img2 from '../../assets/imagesintermediate/img2.svg'
+import img3 from '../../assets/imagesintermediate/img3.svg'
+import img4 from '../../assets/imagesintermediate/img4.svg'
 
 export function Intermediateexercise() {
   return (

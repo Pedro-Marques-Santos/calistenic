@@ -1,6 +1,6 @@
 import { Base, ButtonGoogle, ButtonLogin, ButtonRegister, Container, ErrorOrPassword, ImgLogo, Input, Error } from "./styles";
-import logo from '../../images/logo-final.png';
-import google from '../../images/Google.svg';
+import logo from '../../assets/images/logo-final.png';
+import google from '../../assets/images/Google.svg';
 import { useContext } from "react";
 import { AuthenticationContext } from "../../context/authentication";
 

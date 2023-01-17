@@ -1,6 +1,6 @@
 import { Base, Cardcontent, Container, Difficulty, Level, Muscles, Video } from "./styles";
 
-import teste from "../../videosexercicios/teste5.mp4"
+import teste from "../../assets/videosexercicios/teste5.mp4"
 
 export function Exercise() {
   return (

@@ -4,12 +4,12 @@ import { CarouselContainer, Container, ImgLogo, TypeExercise } from "./styles";
 
 import Slider from "react-slick";
 
-import imgLogo from "../../images/logo.svg";
+import imgLogo from "../../assets/images/logo.svg";
 
-import img1 from '../../imgcarousel/img1.svg'
-import img2 from '../../imgcarousel/img2.svg'
-import img3 from '../../imgcarousel/img3.svg'
-import img4 from '../../imgcarousel/img4.svg'
+import img1 from '../../assets/imgcarousel/img1.svg'
+import img2 from '../../assets/imgcarousel/img2.svg'
+import img3 from '../../assets/imgcarousel/img3.svg'
+import img4 from '../../assets/imgcarousel/img4.svg'
 
 let settings = {
   infinite: false,

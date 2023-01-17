@@ -1,6 +1,6 @@
 import { Container, ItemMenu, Menu, Profile } from "./styles";
 
-import imgprofile from '../../images/profile.jpg'
+import imgprofile from '../../assets/images/profile.jpg'
 
 interface HeaderProps {
   openNavbar: () => void;

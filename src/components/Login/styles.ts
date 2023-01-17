@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import background from '../../images/teste2.jpg'
+import background from '../../assets/images/teste2.jpg'
 
 export const Base = styled.div`
   width: 100%;
