@@ -1,6 +1,6 @@
 import { Authentication } from "./components/Authentication";
 import { Dashboard } from "./components/Dashboard";
-//import { Exercise } from "./components/Exercise";
+import { Exercise } from "./components/Exercise";
 import { Introduction } from "./components/Introduction";
 import { AuthenticationProvider } from "./context/authentication";
 import { GlobalStyle } from "./styles/global";
@@ -19,6 +19,9 @@ export function App() {
         </Routes>
         <Routes>
           <Route path="dashboard" element={<Dashboard />}></Route>
+        </Routes>
+        <Routes>
+          <Route path="exercise" element={<Exercise />}></Route>
         </Routes>
       </BrowserRouter>
       <GlobalStyle />

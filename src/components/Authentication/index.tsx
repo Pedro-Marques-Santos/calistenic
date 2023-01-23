@@ -7,8 +7,6 @@ export function Authentication() {
 
   const authentication = useContext(AuthenticationContext);
 
-  console.log(authentication);
-
   if (!authentication) {
     return <></>
   }

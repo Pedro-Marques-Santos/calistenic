@@ -24,7 +24,7 @@ const initialStage = {
 } as IInitialState;
 
 const authenticationReducer = (state: IInitialState, action: ReducerAction) => {
-  console.log(state);
+
   switch (action.type) {
     case "REGISTER":
       return {

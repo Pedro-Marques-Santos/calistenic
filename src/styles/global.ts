@@ -8,6 +8,7 @@ export const GlobalStyle = createGlobalStyle`
     --black-light: #00000040;
     --white: #FFFFFF;
     --gray: #BDB9B9;
+    --gray-black: #474747;
     --white-gray: #FFFFFFCC;
     --gray-white: #F0F1F8;
     --purple-light: #545871;
@@ -17,6 +18,9 @@ export const GlobalStyle = createGlobalStyle`
     --blue-light: #92acc7;
     --blue-dark: #242456;
     --blue-extreme-dark: #0E0E30;
+    --blue: rgba(0, 56, 255, 0.42);
+    --red: rgba(255, 0, 0, 0.42);
+    --yellow: #ffb500
   }
 
   body {
@@ -32,7 +36,7 @@ export const GlobalStyle = createGlobalStyle`
   .slick-next:before, .slick-prev:before {
     font-size: 28px;
     line-height: 1;
-    color: #ffb500;
+    color: var(--yellow);
     opacity: 0.88;
 }
 

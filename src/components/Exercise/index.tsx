@@ -1,6 +1,6 @@
 import { Base, Cardcontent, Container, Difficulty, Level, Muscles, Video } from "./styles";
 
-import teste from "../../assets/videosexercicios/teste5.mp4"
+import background from "../../assets/videosexercicios/teste5.mp4"
 
 export function Exercise() {
   return (
@@ -13,7 +13,7 @@ export function Exercise() {
             <Difficulty>INICIANTE</Difficulty>
           </Level>
           <Video>
-            <video src={teste} controls />
+            <video src={background} controls />
           </Video>
           <Muscles>
             <h3>Grupos musculares:</h3>

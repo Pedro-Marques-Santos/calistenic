@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import background from '../../images/teste.png'
+import background from '../../assets/images/teste.png'
 
 export const Base = styled.div`
   width: 100%;
@@ -21,7 +21,7 @@ export const Container = styled.div`
   margin-left: 7px;
   margin-right: 7px;
   background: white;
-  box-shadow: 0px 1px 1px 1px #00000040;
+  box-shadow: 0px 1px 1px 1px var(--dark);
   border-radius: 20px;
 
 
@@ -35,7 +35,7 @@ export const Container = styled.div`
     font-family: Balthazar;
 
     font-weight: 400;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0px 4px 4px var(--dark);
   }
 `
 
@@ -70,7 +70,7 @@ export const Difficulty = styled.div`
   height: 32px;
   width: 127px;
   border-radius: 10px;
-  background: linear-gradient(93.63deg, rgba(0, 56, 255, 0.42) 0%, rgba(255, 0, 0, 0.42) 100%);
+  background: linear-gradient(93.63deg, var(--blue) 0%, var(--red) 100%);
 
   font-family: 'Inter';
   font-size: 18px;
@@ -78,7 +78,7 @@ export const Difficulty = styled.div`
   line-height: 22px;
   letter-spacing: 0em;
   text-align: center;
-  color: #FFFFFF;
+  color: var(--white);
 `
 
 export const Video = styled.div`
@@ -101,7 +101,7 @@ export const Muscles = styled.div`
     line-height: 22px;
     letter-spacing: 0em;
     text-align: left;
-    color: #474747;
+    color: var(--gray-black);
 
   }
 

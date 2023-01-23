@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import background from '../../assets/images/teste2.jpg'
+import background from "../../assets/images/teste2.jpg";
 
 export const Base = styled.div`
   width: 100%;
@@ -11,7 +11,7 @@ export const Base = styled.div`
   background-size: cover;
   background-position: center;
   background-image: url(${background});
-`
+`;
 
 export const Container = styled.div`
   height: 500px;
@@ -26,7 +26,7 @@ export const Container = styled.div`
   flex-direction: column;
 
   color: var(--white);
-`
+`;
 
 export const ImgLogo = styled.div`
   width: 170px;
@@ -34,7 +34,7 @@ export const ImgLogo = styled.div`
     width: 170px;
   }
   margin-bottom: 20px;
-`
+`;
 
 export const Input = styled.div`
   color: var(--white);
@@ -48,7 +48,7 @@ export const Input = styled.div`
     border-bottom: 1px solid var(--purple);
     text-align: center;
   }
-`
+`;
 
 export const ButtonLogin = styled.div`
   cursor: pointer;
@@ -62,7 +62,7 @@ export const ButtonLogin = styled.div`
   justify-content: center;
   color: var(--black);
   box-shadow: 1px 1px 5px 0px var(--dark);
-`
+`;
 
 export const ButtonRegister = styled.div`
   cursor: pointer;
@@ -76,7 +76,7 @@ export const ButtonRegister = styled.div`
   justify-content: center;
   color: var(--white);
   box-shadow: 1px 1px 5px 0px var(--dark);
-`
+`;
 
 export const ButtonGoogle = styled.div`
   cursor: pointer;
@@ -100,16 +100,18 @@ export const ButtonGoogle = styled.div`
     }
     margin-left: 10px;
   }
-`
+`;
 
 export const ErrorOrPassword = styled.div`
   font-size: 13px;
   width: 90%;
   display: flex;
   color: var(--black);
-`
+`;
 
 export const Error = styled.div`
   width: 100%;
-  color: transparent;
-`
+  height: 18px;
+  font-size: 14px;
+  color: red;
+`;
