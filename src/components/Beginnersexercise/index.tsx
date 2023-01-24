@@ -4,11 +4,16 @@ import img1 from '../../assets/imagesbeginners/img1.svg'
 import img2 from '../../assets/imagesbeginners/img2.svg'
 import img3 from '../../assets/imagesbeginners/img3.svg'
 import img4 from '../../assets/imagesbeginners/img4.svg'
+import { RefObject } from "react";
 
-export function Beginnersexercise() {
+interface BeginnerexerciseProps {
+  refBegginerExercise: RefObject<HTMLDivElement>;
+}
+
+export function Beginnersexercise({ refBegginerExercise }: BeginnerexerciseProps) {
   return (
     <Container>
-      <TypeExercise>exercises for beginners</TypeExercise>
+      <TypeExercise ref={refBegginerExercise}>exercises for beginners</TypeExercise>
       <ContainerExercise>
         <Exercise>
           <img src={img1} alt="" />

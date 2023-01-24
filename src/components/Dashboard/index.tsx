@@ -4,6 +4,7 @@ import { Allexercise } from "../Allexercise";
 import { Header } from "../Header";
 import { NavbarMenu } from "../NavbarMenu";
 import { Container } from "./styles";
+import { useRef } from "react";
 
 interface ResponseUser {
   token: string;
@@ -11,6 +12,10 @@ interface ResponseUser {
 }
 
 export function Dashboard() {
+  const bestExercise = useRef<HTMLDivElement>(null);
+  const begginExercise = useRef<HTMLDivElement>(null);
+  const intermediateExercise = useRef<HTMLDivElement>(null);
+
   const location = useLocation();
 
   const user = location.state.user as ResponseUser;
@@ -34,10 +39,18 @@ export function Dashboard() {
         closeNavbar={handleCloseNavbarMenu}
         stateNavbarMenu={stateNavbarMenu}
       />
-      <Allexercise />
+      <Allexercise 
+        refBestExercise={bestExercise}
+        refBegginerExercise={begginExercise}
+        refIntermediateExercise={intermediateExercise}
+      />
       <NavbarMenu
         stateNavbarMenu={stateNavbarMenu}
         closeNavbar={handleCloseNavbarMenu}
+
+        refBestExercise={bestExercise}
+        refBegginerExercise={begginExercise}
+        refIntermediateExercise={intermediateExercise}
       />
     </Container>
   );

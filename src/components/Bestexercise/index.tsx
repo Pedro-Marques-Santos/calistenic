@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 import { CarouselContainer, Container, ImgLogo, TypeExercise } from "./styles";
 
 import Slider from "react-slick";
@@ -10,6 +8,7 @@ import img1 from '../../assets/imgcarousel/img1.svg'
 import img2 from '../../assets/imgcarousel/img2.svg'
 import img3 from '../../assets/imgcarousel/img3.svg'
 import img4 from '../../assets/imgcarousel/img4.svg'
+import { RefObject } from "react";
 
 let settings = {
   infinite: false,
@@ -18,46 +17,18 @@ let settings = {
   adaptiveHeight: true,
 };
 
-export function Bestexercise() {
+interface BestexerciseProps {
+  refBestExercise: RefObject<HTMLDivElement>;
+}
 
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleWindowResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener('resize', handleWindowResize);
-
-    return () => {
-      window.removeEventListener('resize', handleWindowResize);
-    };
-  });
-
-  if (windowWidth < 900) {
-    settings = {
-      infinite: false,
-      speed: 700,
-      slidesToShow: 1,
-      adaptiveHeight: true,
-    };
-  }
-
-  if (windowWidth > 900) {
-    settings = {
-      infinite: false,
-      speed: 700,
-      slidesToShow: 2,
-      adaptiveHeight: true,
-    };
-  }
+export function Bestexercise({ refBestExercise }: BestexerciseProps) {
 
   return (
     <Container>
       <ImgLogo>
         <img src={imgLogo} alt="" />
       </ImgLogo>
-      <TypeExercise>Best exercise</TypeExercise>
+      <TypeExercise ref={refBestExercise}>Best exercise</TypeExercise>
       <CarouselContainer>
         <Slider {...settings} className="carousel">
           <div>
