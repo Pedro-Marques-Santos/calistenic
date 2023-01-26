@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { RefObject } from "react";
 import { CloseNavbarMenu, Container, ItemMenu } from "./styles";
 

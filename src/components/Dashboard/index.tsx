@@ -17,9 +17,11 @@ export function Dashboard() {
   const intermediateExercise = useRef<HTMLDivElement>(null);
 
   const location = useLocation();
+  
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const user = location.state.user as ResponseUser;
-  console.log(user)
+  // console.log(user)
 
 
   const [stateNavbarMenu, setNewStateNavbarMenu] = useState(false);

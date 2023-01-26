@@ -1,27 +1,80 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Base, Cardcontent, Container, Difficulty, Level, Muscles, Video } from "./styles";
 
-import background from "../../assets/videosexercicios/teste5.mp4"
+import { useLocation } from "react-router-dom";
+
+import background from "../../assets/videosexercicios/teste5.mp4";
+import { useEffect, useState } from "react";
+
+interface ExerciseProps {
+  typeExercise: string;
+}
+
+interface ResponseExercise {
+  typeexercise: {
+    description: string,
+    id: string;
+    level: string;
+    muscules: string;
+    name: string;
+  }
+}
 
 export function Exercise() {
+  const location = useLocation();
+
+  const [resultResponse, setResultResponse] = useState({
+    description: '',
+    level: '',
+    muscules: '',
+    name: ''
+  });
+
+  const exercise = location.state.exercise as ExerciseProps;
+
+  useEffect(() => {
+    const buscarExercise = async () => {
+      let data = {
+        name: exercise.typeExercise
+      }
+
+      let response = await fetch('http://localhost:3333/findByExercise', {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-type": "application/json; charset=UTF-8" },
+      });
+
+      let result = await response.json() as ResponseExercise;
+
+      setResultResponse({
+        description: result.typeexercise.description,
+        level: result.typeexercise.level,
+        muscules: result.typeexercise.muscules,
+        name: result.typeexercise.name
+      });
+    }
+    buscarExercise();
+  });
+
   return (
     <Base>
       <Container>
-        <h1>PUSH UPS</h1>
+        <h1>{resultResponse.name}</h1>
         <Cardcontent>
           <Level>
-            <h2>NÍVEL</h2>
-            <Difficulty>INICIANTE</Difficulty>
+            <h2>LEVEL</h2>
+            <Difficulty>{resultResponse.level}</Difficulty>
           </Level>
           <Video>
             <video src={background} controls />
           </Video>
           <Muscles>
             <h3>Grupos musculares:</h3>
-            <div>Peitoral, Tríceps, Ombros</div>
+            <div>{resultResponse.muscules}</div>
           </Muscles>
           <Muscles>
             <h3>Descrição:</h3>
-            <div>Alinhamento das mãos, na linha vertical do corpo, as mãos devem ficam um pouco abaixo do ombro, na direção horizontal, as mãos também devem ficar um pouco afastadas dos ombros, ative o abdômen e execute o movimento tensionando os braços para trás, não para os lados.</div>
+            <div>{resultResponse.description}</div>
           </Muscles>
         </Cardcontent>
       </Container>
