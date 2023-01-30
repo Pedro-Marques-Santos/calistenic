@@ -7,9 +7,16 @@ interface NavbarMenuProps {
   refBestExercise: RefObject<HTMLDivElement>;
   refBegginerExercise: RefObject<HTMLDivElement>;
   refIntermediateExercise: RefObject<HTMLDivElement>;
+  openModalProfile: () => void;
 }
 
-export function NavbarMenu({ stateNavbarMenu, closeNavbar, refBestExercise, refBegginerExercise, refIntermediateExercise }: NavbarMenuProps) {
+export function NavbarMenu({ 
+  stateNavbarMenu, 
+  closeNavbar, 
+  refBestExercise, 
+  refBegginerExercise, 
+  openModalProfile,
+  refIntermediateExercise }: NavbarMenuProps) {
 
   function closeNavBarMenu() {
     closeNavbar();
@@ -36,6 +43,11 @@ export function NavbarMenu({ stateNavbarMenu, closeNavbar, refBestExercise, refB
     });
   }
 
+  function handleOpenModalProfile() {
+    closeNavbar();
+    openModalProfile();
+  }
+
   return (
     <Container
       stateNavbarMenu={stateNavbarMenu}
@@ -56,7 +68,7 @@ export function NavbarMenu({ stateNavbarMenu, closeNavbar, refBestExercise, refB
         <i className="fa-solid fa-chart-line"></i>
         <div>Intermediate exercises</div>
       </ItemMenu>
-      <ItemMenu>
+      <ItemMenu onClick={handleOpenModalProfile}>
         <i className="fa-solid fa-user"></i>
         <div>Profile</div>
       </ItemMenu>

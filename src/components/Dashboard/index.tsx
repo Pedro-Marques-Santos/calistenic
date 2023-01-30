@@ -5,6 +5,7 @@ import { Header } from "../Header";
 import { NavbarMenu } from "../NavbarMenu";
 import { Container } from "./styles";
 import { useRef } from "react";
+import { ModalProfile } from "../ModalProfile";
 
 interface ResponseUser {
   token: string;
@@ -24,6 +25,7 @@ export function Dashboard() {
   // console.log(user)
 
 
+  //NavbarMenu
   const [stateNavbarMenu, setNewStateNavbarMenu] = useState(false);
 
   function handleOpenNavbarMenu() {
@@ -34,7 +36,19 @@ export function Dashboard() {
     setNewStateNavbarMenu(false);
   }
 
+  // ModalProfile
+  const [stateModalProfile, setStateModalProfile] = useState(false);
+
+  function handleOpenModalProfile() {
+    setStateModalProfile(true);
+  }
+
+  function handleCloseModalProfile() {
+    setStateModalProfile(false);
+  }
+
   return (
+    <>
     <Container>
       <Header
         openNavbar={handleOpenNavbarMenu}
@@ -53,7 +67,14 @@ export function Dashboard() {
         refBestExercise={bestExercise}
         refBegginerExercise={begginExercise}
         refIntermediateExercise={intermediateExercise}
+
+        openModalProfile={handleOpenModalProfile}
       />
     </Container>
+    <ModalProfile 
+        stateModalProfile={stateModalProfile} 
+        closeModalProfile={handleCloseModalProfile}
+      />
+    </>
   );
 }

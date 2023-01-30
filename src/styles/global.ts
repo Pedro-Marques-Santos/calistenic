@@ -1,4 +1,3 @@
-
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
@@ -20,7 +19,8 @@ export const GlobalStyle = createGlobalStyle`
     --blue-extreme-dark: #0E0E30;
     --blue: rgba(0, 56, 255, 0.42);
     --red: rgba(255, 0, 0, 0.42);
-    --yellow: #ffb500
+    --yellow: #ffb500;
+    --overlay: rgba(0,0,0,0.5);
   }
 
   body {
@@ -38,6 +38,43 @@ export const GlobalStyle = createGlobalStyle`
     line-height: 1;
     color: var(--yellow);
     opacity: 0.88;
-}
+  }
+
+  .react-modal-overlay {
+    background: var(--overlay);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .react-modal-content {
+    width: 100%; 
+    max-width: 576px;
+    background: var(--background);
+    padding: 3rem;
+    position: relative;
+    border-radius: 0.24rem;
+    background: var(--white);
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+  }
+  .react-modal-close {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    font-size: 19px;
+    border: 0;
+    background: transparent;
+  }
+
+  button {
+    cursor: pointer;
+  }
 
 `;
