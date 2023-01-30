@@ -8,7 +8,7 @@ export const Container = styled.div<ContainerProps>`
   position: absolute;
   top: 80px;
   transition: 1.6s;
-  left: ${(props) => props.stateNavbarMenu ? '0px' : '-100%'};
+  left: ${(props) => (props.stateNavbarMenu ? "0px" : "-100%")};
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -17,7 +17,10 @@ export const Container = styled.div<ContainerProps>`
   color: white;
   border-top-right-radius: 14px;
   border-bottom-right-radius: 14px;
-`
+  @media (max-width: 400px) {
+    width: 100%;
+  }
+`;
 
 export const ItemMenu = styled.div`
   cursor: pointer;
@@ -36,16 +39,16 @@ export const ItemMenu = styled.div`
   }
   div {
     font-size: 17px;
-    font-family: 'Saira';
+    font-family: "Saira";
   }
 
   :last-child {
     margin-bottom: 20px;
   }
-`
+`;
 
 export const CloseNavbarMenu = styled.div`
-  font-family: 'Shadows Into Light';
+  font-family: "Shadows Into Light";
   padding-left: 20px;
   font-size: 22px;
   display: flex;
@@ -60,4 +63,4 @@ export const CloseNavbarMenu = styled.div`
     justify-content: center;
     padding-right: 10%;
   }
-`
+`;

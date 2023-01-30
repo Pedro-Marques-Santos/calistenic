@@ -73,10 +73,6 @@ export function NavbarMenu({
         <div>Profile</div>
       </ItemMenu>
       <ItemMenu>
-        <i className="fa-solid fa-envelope"></i>
-        <div>About us</div>
-      </ItemMenu>
-      <ItemMenu>
         <i className="fa-solid fa-right-from-bracket"></i>
         <div>Logaut</div>
       </ItemMenu>

@@ -32,6 +32,7 @@ export const ImgLogo = styled.div`
   width: 170px;
   img {
     width: 170px;
+    object-fit: cover;
   }
   margin-bottom: 20px;
 `;

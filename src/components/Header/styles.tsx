@@ -7,6 +7,9 @@ export const Container = styled.div`
   box-shadow: 0px 3px 3px 0px var(--black-light);
   display: flex;
   align-items: center;
+  @media (max-width: 400px) {
+    justify-content: center;
+  }
 `
 
 export const Menu = styled.div`

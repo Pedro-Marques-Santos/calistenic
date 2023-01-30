@@ -54,6 +54,8 @@ export function Dashboard() {
         openNavbar={handleOpenNavbarMenu}
         closeNavbar={handleCloseNavbarMenu}
         stateNavbarMenu={stateNavbarMenu}
+
+        openModalProfile={handleOpenModalProfile}
       />
       <Allexercise 
         refBestExercise={bestExercise}
