@@ -13,11 +13,12 @@ export const Container = styled.div<ContainerProps>`
   flex-direction: column;
   flex: 1;
   width: 300px;
-  background: #06061f;
-  color: white;
+  background: var(--gray-dark);
+  color: var(--gray-fundo);
   border-top-right-radius: 14px;
   border-bottom-right-radius: 14px;
   @media (max-width: 400px) {
+    border-radius: 0;
     width: 100%;
   }
 `;

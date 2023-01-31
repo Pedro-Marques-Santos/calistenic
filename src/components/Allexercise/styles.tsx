@@ -1,5 +1,5 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background: var(--blue-extreme-dark);
+  background: var(--gray-fundo);
 `

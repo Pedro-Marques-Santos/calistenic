@@ -17,7 +17,7 @@ export const TypeExercise = styled.div`
   font-size: 19px;
   display: flex;
   justify-content: center;
-  color: var(--white);
+  color: var(--black-main);
   margin-top: -40px;
 `;
 

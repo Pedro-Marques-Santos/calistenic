@@ -1,5 +1,5 @@
 import Modal from 'react-modal';
-import { Container, ImgProfile, ModifyProfile, Motivation, Name } from './styles';
+import { Button, Container, ContentButton, ImgProfile, ModifyProfile, Motivation, Name } from './styles';
 
 import imgProfile from '../../assets/images/profile.jpg'
 
@@ -28,6 +28,10 @@ export function ModalProfile({ stateModalProfile, closeModalProfile }: ModalProf
         <Name>Shambhavi Mishra</Name>
         <Motivation>My goal is to train every day, increase the number of repetitions and always challenge myself to develop a new movement.</Motivation>
         <ModifyProfile>Change Motivation</ModifyProfile>
+        <ContentButton>
+          <Button>Cancelar</Button>
+          <Button>Modificar</Button>
+        </ContentButton>
       </Container>
     </Modal>
   );

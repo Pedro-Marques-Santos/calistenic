@@ -40,3 +40,26 @@ export const Motivation = styled.div`
   margin-top: 12px;
   text-align: center;
 `;
+
+export const ContentButton = styled.div`
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+`;
+
+export const Button = styled.div`
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  margin-left: 12px;
+  height: 40px;
+  background: var(--gray-light);
+  border: 1px solid var(--gray-border);
+  transition: 0.6s;
+  :hover {
+    background: var(--gray-border);
+    border: 1px solid #696969;
+  }
+`;
