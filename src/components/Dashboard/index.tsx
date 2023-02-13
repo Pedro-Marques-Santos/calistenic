@@ -1,4 +1,5 @@
-import { useState } from "react";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { LegacyRef, RefObject, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Allexercise } from "../Allexercise";
 import { Header } from "../Header";
@@ -7,23 +8,24 @@ import { Container } from "./styles";
 import { useRef } from "react";
 import { ModalProfile } from "../ModalProfile";
 
+import { ModalEditMotivation } from "../ModalEditMotivation";
+
 interface ResponseUser {
   token: string;
   name: string;
 }
 
 export function Dashboard() {
+
+  const [userId, setUserid] = useState('');
+
   const bestExercise = useRef<HTMLDivElement>(null);
   const begginExercise = useRef<HTMLDivElement>(null);
   const intermediateExercise = useRef<HTMLDivElement>(null);
 
   const location = useLocation();
   
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const user = location.state.user as ResponseUser;
-  // console.log(user)
-
 
   //NavbarMenu
   const [stateNavbarMenu, setNewStateNavbarMenu] = useState(false);
@@ -47,35 +49,54 @@ export function Dashboard() {
     setStateModalProfile(false);
   }
 
+  // ModalEditMotivation
+  const [stateModalMotivation, setStateModalMotivation] = useState(false);
+
+  function handleOpenModalMotivation() {
+    setStateModalMotivation(true);
+  }
+
+  function handleCloseModalMotivation() {
+    setStateModalMotivation(false)
+  }
+
   return (
     <>
-    <Container>
-      <Header
-        openNavbar={handleOpenNavbarMenu}
-        closeNavbar={handleCloseNavbarMenu}
-        stateNavbarMenu={stateNavbarMenu}
+      <Container>
+        <Header
+          openNavbar={handleOpenNavbarMenu}
+          closeNavbar={handleCloseNavbarMenu}
+          stateNavbarMenu={stateNavbarMenu}
 
-        openModalProfile={handleOpenModalProfile}
-      />
-      <Allexercise 
-        refBestExercise={bestExercise}
-        refBegginerExercise={begginExercise}
-        refIntermediateExercise={intermediateExercise}
-      />
-      <NavbarMenu
-        stateNavbarMenu={stateNavbarMenu}
-        closeNavbar={handleCloseNavbarMenu}
+          openModalProfile={handleOpenModalProfile}
+        />
+        <Allexercise 
+          refBestExercise={bestExercise}
+          refBegginerExercise={begginExercise}
+          refIntermediateExercise={intermediateExercise}
+        />
+        <NavbarMenu
+          stateNavbarMenu={stateNavbarMenu}
+          closeNavbar={handleCloseNavbarMenu}
 
-        refBestExercise={bestExercise}
-        refBegginerExercise={begginExercise}
-        refIntermediateExercise={intermediateExercise}
+          refBestExercise={bestExercise}
+          refBegginerExercise={begginExercise}
+          refIntermediateExercise={intermediateExercise}
 
-        openModalProfile={handleOpenModalProfile}
-      />
-    </Container>
-    <ModalProfile 
+          openModalProfile={handleOpenModalProfile}
+        />
+      </Container>
+      <ModalProfile
+        openModalMotivation={handleOpenModalMotivation}
+        tokenUser={user.token}
         stateModalProfile={stateModalProfile} 
         closeModalProfile={handleCloseModalProfile}
+        setUserId={setUserid}
+      />
+      <ModalEditMotivation
+        userId={userId}
+        stateModalMotivation={stateModalMotivation}
+        closeModalMotivation={handleCloseModalMotivation}
       />
     </>
   );

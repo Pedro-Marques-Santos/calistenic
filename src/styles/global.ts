@@ -82,4 +82,19 @@ export const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
 
+  body::-webkit-scrollbar {
+    width: 5.4px;
+	  background-color: #F5F5F5;
+  }
+
+  body::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+  }
+
+  body::-webkit-scrollbar-thumb {
+	  box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	  background-color: #555;
+  }
+
 `;
