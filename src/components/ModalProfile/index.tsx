@@ -2,56 +2,25 @@ import Modal from 'react-modal';
 import { Container, ImgProfile, ModifyProfile, Motivation, Name } from './styles';
 
 import imgProfile from '../../assets/images/profile.jpg'
-import { useEffect, useState } from 'react';
+
+interface IUserProfile {
+  motivation: string;
+  avatar: string | null;
+  name: string;
+}
 
 interface ModalProfileProps {
   stateModalProfile: boolean,
   closeModalProfile: () => void;
-  tokenUser: string;
   openModalMotivation: () => void;
-  setUserId: React.Dispatch<React.SetStateAction<string>>;
-}
-
-interface IProfileUser {
-  motivation: string;
-  name: string;
-  id: string;
+  userProfile: IUserProfile;
 }
 
 export function ModalProfile({ 
   stateModalProfile, 
   closeModalProfile, 
-  tokenUser, 
   openModalMotivation, 
-  setUserId }: ModalProfileProps) {
-
-  const [ name, setName ] = useState('');
-  const [ motivation, setMotivation ] = useState('');
-
-  useEffect(() => {
-    const profile = async () => {
-
-      let data = {
-        token: tokenUser
-      }
-
-      let response = await fetch('http://localhost:3333/profileUser', {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: { "Content-type": "application/json; charset=UTF-8" },
-      });
-
-      if(response.status === 200) {
-        let profile = await response.json() as IProfileUser;
-        setMotivation(profile.motivation);
-        setName(profile.name);
-        setUserId(profile.id);
-      }
-
-    }
-
-    profile();
-  });
+  userProfile }: ModalProfileProps) {
 
   return(
     <Modal isOpen={stateModalProfile} onRequestClose={closeModalProfile}
@@ -70,8 +39,10 @@ export function ModalProfile({
           <img src={imgProfile} alt="" />
         </ImgProfile>
         <ModifyProfile>Change Photo</ModifyProfile>
-        <Name>{name}</Name>
-        <Motivation>{motivation}</Motivation>
+        <Name>{userProfile.name}</Name>
+        <Motivation>
+          {userProfile.motivation}
+        </Motivation>
         <ModifyProfile onClick={openModalMotivation}>Change Motivation</ModifyProfile>
       </Container>
     </Modal>

@@ -5,32 +5,17 @@ import { Button, Container, ContentButton, InputMotivation } from './styles';
 interface ModalEditMotivationProps {
   stateModalMotivation: boolean;
   closeModalMotivation: () => void;
-  userId?: string;
 }
 
 export function ModalEditMotivation({ 
   stateModalMotivation, 
-  closeModalMotivation,
-  userId }: ModalEditMotivationProps) {
+  closeModalMotivation,}: ModalEditMotivationProps) {
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [motivation, setMotivation] = useState('');
 
   async function handleMotivationModify() {
-    if(motivation && userId) {
-      let data = {
-        motivation: motivation,
-        id: userId
-      }
-
-      await fetch('http://localhost:3333/changeMotivation', {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: { "Content-type": "application/json; charset=UTF-8" },
-      });
-
-      closeModalMotivation();
-      setMotivation('');
-    }
+    closeModalMotivation();
   }
 
     

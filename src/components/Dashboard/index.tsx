@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { LegacyRef, RefObject, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Allexercise } from "../Allexercise";
 import { Header } from "../Header";
@@ -10,22 +9,52 @@ import { ModalProfile } from "../ModalProfile";
 
 import { ModalEditMotivation } from "../ModalEditMotivation";
 
-interface ResponseUser {
+interface IReponseData {
   token: string;
+}
+
+interface IResponseUser {
+  motivation: string;
+  avatar: string | null;
   name: string;
 }
 
 export function Dashboard() {
 
-  const [userId, setUserid] = useState('');
+  const [profile, setProfile] = useState({
+    motivation: '',
+    avatar: null as string | null,
+    name: ''
+  });
 
   const bestExercise = useRef<HTMLDivElement>(null);
   const begginExercise = useRef<HTMLDivElement>(null);
   const intermediateExercise = useRef<HTMLDivElement>(null);
 
   const location = useLocation();
-  
-  const user = location.state.user as ResponseUser;
+
+  const dataToken = location.state.data as IReponseData;
+
+  useEffect(() => {
+
+    const profileUser = async () => {
+      let response = await fetch('http://localhost:3333/profileUser', {
+        method: "POST",
+        headers: { 'Authorization': 'Bearer ' + dataToken.token }
+      });
+
+      if(response.status === 200) {
+        let result = await response.json() as IResponseUser;
+        console.log(result)
+        setProfile({
+          motivation: result.motivation,
+          name: result.name,
+          avatar: result.avatar
+        });
+      }
+    }
+    profileUser();
+  }, [dataToken.token]);
 
   //NavbarMenu
   const [stateNavbarMenu, setNewStateNavbarMenu] = useState(false);
@@ -53,10 +82,12 @@ export function Dashboard() {
   const [stateModalMotivation, setStateModalMotivation] = useState(false);
 
   function handleOpenModalMotivation() {
+    setStateModalProfile(false)
     setStateModalMotivation(true);
   }
 
   function handleCloseModalMotivation() {
+    setStateModalProfile(true);
     setStateModalMotivation(false)
   }
 
@@ -88,13 +119,11 @@ export function Dashboard() {
       </Container>
       <ModalProfile
         openModalMotivation={handleOpenModalMotivation}
-        tokenUser={user.token}
         stateModalProfile={stateModalProfile} 
         closeModalProfile={handleCloseModalProfile}
-        setUserId={setUserid}
+        userProfile={profile}
       />
       <ModalEditMotivation
-        userId={userId}
         stateModalMotivation={stateModalMotivation}
         closeModalMotivation={handleCloseModalMotivation}
       />

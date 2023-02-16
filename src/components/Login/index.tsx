@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 
 interface ResponseUser {
   token: string;
-  name: string;
 }
 
 export function Login() {
@@ -65,8 +64,7 @@ export function Login() {
         let result = await response.json() as ResponseUser;
         navegate('/dashboard', {
           state: {
-            user: {
-              name: result.name,
+            data: {
               token: result.token
             }
           }

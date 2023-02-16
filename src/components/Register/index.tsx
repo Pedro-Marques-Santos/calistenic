@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 
 interface ResponseUser {
   token: string;
-  name: string;
 }
 
 export function Register() {
@@ -72,8 +71,7 @@ export function Register() {
         
         navegate('/dashboard', {
           state: {
-            user: {
-              name: result.name,
+            data: {
               token: result.token
             }
           }
