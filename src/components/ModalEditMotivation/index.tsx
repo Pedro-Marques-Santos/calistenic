@@ -1,26 +1,47 @@
-import { useState } from 'react';
-import Modal from 'react-modal';
-import { Button, Container, ContentButton, InputMotivation } from './styles';
+import { useState } from "react";
+import Modal from "react-modal";
+import { Button, Container, ContentButton, InputMotivation } from "./styles";
 
 interface ModalEditMotivationProps {
   stateModalMotivation: boolean;
   closeModalMotivation: () => void;
+  tokenUser: string | null | undefined;
+  editUserProfile: () => void;
 }
 
-export function ModalEditMotivation({ 
-  stateModalMotivation, 
-  closeModalMotivation,}: ModalEditMotivationProps) {
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [motivation, setMotivation] = useState('');
+export function ModalEditMotivation({
+  stateModalMotivation,
+  closeModalMotivation,
+  tokenUser,
+  editUserProfile,
+}: ModalEditMotivationProps) {
+  const [motivation, setMotivation] = useState("");
 
   async function handleMotivationModify() {
-    closeModalMotivation();
+    if (motivation) {
+      let data = {
+        motivation: motivation,
+      };
+      const modifyMotivation = async () => {
+        await fetch("http://localhost:3333/changeMotivation", {
+          method: "PATCH",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            Authorization: "Bearer " + tokenUser,
+          },
+        });
+      };
+      await modifyMotivation();
+      setMotivation("");
+      data.motivation = "";
+      editUserProfile();
+      closeModalMotivation();
+    }
+    setMotivation("");
   }
 
-    
-
-  return(
+  return (
     <Modal
       isOpen={stateModalMotivation}
       onRequestClose={closeModalMotivation}
@@ -31,14 +52,20 @@ export function ModalEditMotivation({
       <button
         type="button"
         onClick={closeModalMotivation}
-        className="react-modal-close">
+        className="react-modal-close"
+      >
         <i className="fa-solid fa-xmark"></i>
       </button>
       <Container>
         <InputMotivation>
           <h4>Motivação</h4>
-          <textarea id="story" name="story" onChange={event => setMotivation(event.target.value)}></textarea>
-          <div>Limite de caracteres: 120</div>
+          <textarea
+            maxLength={120}
+            id="story"
+            name="story"
+            onChange={(event) => setMotivation(event.target.value)}
+          ></textarea>
+          <div>Limite de caracteres: {motivation.length}(120)</div>
         </InputMotivation>
         <ContentButton>
           <Button onClick={closeModalMotivation}>Cencelar</Button>

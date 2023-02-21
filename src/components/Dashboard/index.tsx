@@ -9,8 +9,10 @@ import { ModalProfile } from "../ModalProfile";
 
 import { ModalEditMotivation } from "../ModalEditMotivation";
 
-interface IReponseData {
-  token: string;
+interface CustomizedState {
+  data: {
+    token: string;
+  } | null;
 }
 
 interface IResponseUser {
@@ -20,11 +22,14 @@ interface IResponseUser {
 }
 
 export function Dashboard() {
-
   const [profile, setProfile] = useState({
-    motivation: '',
+    motivation: "",
     avatar: null as string | null,
-    name: ''
+    name: "",
+  });
+
+  const [error, setError] = useState({
+    invalidToken: false,
   });
 
   const bestExercise = useRef<HTMLDivElement>(null);
@@ -33,28 +38,59 @@ export function Dashboard() {
 
   const location = useLocation();
 
-  const dataToken = location.state.data as IReponseData;
+  const state = location.state as CustomizedState;
+
+  const token = state?.data?.token;
 
   useEffect(() => {
-
     const profileUser = async () => {
-      let response = await fetch('http://localhost:3333/profileUser', {
+      let response = await fetch("http://localhost:3333/profileUser", {
         method: "POST",
-        headers: { 'Authorization': 'Bearer ' + dataToken.token }
+        headers: new Headers({
+          Authorization: "Bearer " + token,
+          "Content-type": "application/json; charset=UTF-8",
+        }),
       });
 
-      if(response.status === 200) {
-        let result = await response.json() as IResponseUser;
-        console.log(result)
+      if (response.status === 200) {
+        let result = (await response.json()) as IResponseUser;
         setProfile({
           motivation: result.motivation,
           name: result.name,
-          avatar: result.avatar
+          avatar: result.avatar,
+        });
+      } else {
+        setError({
+          invalidToken: true,
         });
       }
-    }
+    };
     profileUser();
-  }, [dataToken.token]);
+  }, [token]);
+
+  async function editUserProfile() {
+    const profileUser = async () => {
+      let response = await fetch("http://localhost:3333/profileUser", {
+        method: "POST",
+        headers: { Authorization: "Bearer " + token },
+      });
+
+      if (response.status === 200) {
+        let result = (await response.json()) as IResponseUser;
+        console.log(result);
+        setProfile({
+          motivation: result.motivation,
+          name: result.name,
+          avatar: result.avatar,
+        });
+      } else {
+        setError({
+          invalidToken: true,
+        });
+      }
+    };
+    await profileUser();
+  }
 
   //NavbarMenu
   const [stateNavbarMenu, setNewStateNavbarMenu] = useState(false);
@@ -82,51 +118,56 @@ export function Dashboard() {
   const [stateModalMotivation, setStateModalMotivation] = useState(false);
 
   function handleOpenModalMotivation() {
-    setStateModalProfile(false)
+    setStateModalProfile(false);
     setStateModalMotivation(true);
   }
 
   function handleCloseModalMotivation() {
     setStateModalProfile(true);
-    setStateModalMotivation(false)
+    setStateModalMotivation(false);
   }
 
   return (
     <>
-      <Container>
-        <Header
-          openNavbar={handleOpenNavbarMenu}
-          closeNavbar={handleCloseNavbarMenu}
-          stateNavbarMenu={stateNavbarMenu}
-
-          openModalProfile={handleOpenModalProfile}
-        />
-        <Allexercise 
-          refBestExercise={bestExercise}
-          refBegginerExercise={begginExercise}
-          refIntermediateExercise={intermediateExercise}
-        />
-        <NavbarMenu
-          stateNavbarMenu={stateNavbarMenu}
-          closeNavbar={handleCloseNavbarMenu}
-
-          refBestExercise={bestExercise}
-          refBegginerExercise={begginExercise}
-          refIntermediateExercise={intermediateExercise}
-
-          openModalProfile={handleOpenModalProfile}
-        />
-      </Container>
-      <ModalProfile
-        openModalMotivation={handleOpenModalMotivation}
-        stateModalProfile={stateModalProfile} 
-        closeModalProfile={handleCloseModalProfile}
-        userProfile={profile}
-      />
-      <ModalEditMotivation
-        stateModalMotivation={stateModalMotivation}
-        closeModalMotivation={handleCloseModalMotivation}
-      />
+      {error.invalidToken === true ? (
+        <>Token inválido, faça login novamente!</>
+      ) : (
+        <>
+          <Container>
+            <Header
+              openNavbar={handleOpenNavbarMenu}
+              closeNavbar={handleCloseNavbarMenu}
+              stateNavbarMenu={stateNavbarMenu}
+              openModalProfile={handleOpenModalProfile}
+            />
+            <Allexercise
+              refBestExercise={bestExercise}
+              refBegginerExercise={begginExercise}
+              refIntermediateExercise={intermediateExercise}
+            />
+            <NavbarMenu
+              stateNavbarMenu={stateNavbarMenu}
+              closeNavbar={handleCloseNavbarMenu}
+              refBestExercise={bestExercise}
+              refBegginerExercise={begginExercise}
+              refIntermediateExercise={intermediateExercise}
+              openModalProfile={handleOpenModalProfile}
+            />
+          </Container>
+          <ModalProfile
+            openModalMotivation={handleOpenModalMotivation}
+            stateModalProfile={stateModalProfile}
+            closeModalProfile={handleCloseModalProfile}
+            userProfile={profile}
+          />
+          <ModalEditMotivation
+            tokenUser={token}
+            stateModalMotivation={stateModalMotivation}
+            closeModalMotivation={handleCloseModalMotivation}
+            editUserProfile={editUserProfile}
+          />
+        </>
+      )}
     </>
   );
 }
