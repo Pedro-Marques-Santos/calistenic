@@ -1,5 +1,6 @@
 import { RefObject } from "react";
 import { CloseNavbarMenu, Container, ItemMenu } from "./styles";
+import { useNavigate } from "react-router-dom";
 
 interface NavbarMenuProps {
   stateNavbarMenu: boolean;
@@ -10,13 +11,15 @@ interface NavbarMenuProps {
   openModalProfile: () => void;
 }
 
-export function NavbarMenu({ 
-  stateNavbarMenu, 
-  closeNavbar, 
-  refBestExercise, 
-  refBegginerExercise, 
+export function NavbarMenu({
+  stateNavbarMenu,
+  closeNavbar,
+  refBestExercise,
+  refBegginerExercise,
   openModalProfile,
-  refIntermediateExercise }: NavbarMenuProps) {
+  refIntermediateExercise,
+}: NavbarMenuProps) {
+  const navegate = useNavigate();
 
   function closeNavBarMenu() {
     closeNavbar();
@@ -48,10 +51,12 @@ export function NavbarMenu({
     openModalProfile();
   }
 
+  function handleLogaut() {
+    navegate("../index");
+  }
+
   return (
-    <Container
-      stateNavbarMenu={stateNavbarMenu}
-    >
+    <Container stateNavbarMenu={stateNavbarMenu}>
       <CloseNavbarMenu>
         <div>Calisthenic</div>
         <i onClick={closeNavBarMenu} className="fa-solid fa-circle-xmark"></i>
@@ -72,10 +77,10 @@ export function NavbarMenu({
         <i className="fa-solid fa-user"></i>
         <div>Profile</div>
       </ItemMenu>
-      <ItemMenu>
+      <ItemMenu onClick={handleLogaut}>
         <i className="fa-solid fa-right-from-bracket"></i>
         <div>Logaut</div>
       </ItemMenu>
     </Container>
-  )
+  );
 }

@@ -41,6 +41,7 @@ export function Dashboard() {
   const state = location.state as CustomizedState;
 
   const token = state?.data?.token;
+  console.log(token);
 
   useEffect(() => {
     const profileUser = async () => {
@@ -69,27 +70,24 @@ export function Dashboard() {
   }, [token]);
 
   async function editUserProfile() {
-    const profileUser = async () => {
-      let response = await fetch("http://localhost:3333/profileUser", {
-        method: "POST",
-        headers: { Authorization: "Bearer " + token },
-      });
+    let response = await fetch("http://localhost:3333/profileUser", {
+      method: "POST",
+      headers: { Authorization: "Bearer " + token },
+    });
 
-      if (response.status === 200) {
-        let result = (await response.json()) as IResponseUser;
-        console.log(result);
-        setProfile({
-          motivation: result.motivation,
-          name: result.name,
-          avatar: result.avatar,
-        });
-      } else {
-        setError({
-          invalidToken: true,
-        });
-      }
-    };
-    await profileUser();
+    if (response.status === 200) {
+      let result = (await response.json()) as IResponseUser;
+      console.log(result);
+      setProfile({
+        motivation: result.motivation,
+        name: result.name,
+        avatar: result.avatar,
+      });
+    } else {
+      setError({
+        invalidToken: true,
+      });
+    }
   }
 
   //NavbarMenu

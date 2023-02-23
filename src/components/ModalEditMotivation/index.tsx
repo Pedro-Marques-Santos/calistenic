@@ -6,7 +6,7 @@ interface ModalEditMotivationProps {
   stateModalMotivation: boolean;
   closeModalMotivation: () => void;
   tokenUser: string | null | undefined;
-  editUserProfile: () => void;
+  editUserProfile: () => Promise<void>;
 }
 
 export function ModalEditMotivation({
@@ -22,20 +22,17 @@ export function ModalEditMotivation({
       let data = {
         motivation: motivation,
       };
-      const modifyMotivation = async () => {
-        await fetch("http://localhost:3333/changeMotivation", {
-          method: "PATCH",
-          body: JSON.stringify(data),
-          headers: {
-            "Content-type": "application/json; charset=UTF-8",
-            Authorization: "Bearer " + tokenUser,
-          },
-        });
-      };
-      await modifyMotivation();
+      await fetch("http://localhost:3333/changeMotivation", {
+        method: "PATCH",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: "Bearer " + tokenUser,
+        },
+      });
       setMotivation("");
       data.motivation = "";
-      editUserProfile();
+      await editUserProfile();
       closeModalMotivation();
     }
     setMotivation("");
