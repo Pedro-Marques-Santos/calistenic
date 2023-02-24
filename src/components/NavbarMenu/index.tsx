@@ -52,7 +52,7 @@ export function NavbarMenu({
   }
 
   function handleLogaut() {
-    navegate("../index");
+    navegate("../");
   }
 
   return (

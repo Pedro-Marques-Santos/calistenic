@@ -54,4 +54,7 @@ export const Tags = styled.div`
     margin-right: 18px;
     font-size: 20px;
   }
+  a {
+    color: var(--gray-fundo);
+  }
 `;

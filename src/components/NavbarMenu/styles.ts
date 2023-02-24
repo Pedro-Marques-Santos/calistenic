@@ -7,8 +7,8 @@ interface ContainerProps {
 export const Container = styled.div<ContainerProps>`
   position: absolute;
   top: 80px;
-  transition: 1.6s;
-  left: ${(props) => (props.stateNavbarMenu ? "0px" : "-100%")};
+  transition: 1.5s;
+  left: ${(props) => (props.stateNavbarMenu ? "0px" : "-50%")};
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -17,6 +17,9 @@ export const Container = styled.div<ContainerProps>`
   color: var(--gray-fundo);
   border-top-right-radius: 14px;
   border-bottom-right-radius: 14px;
+  @media (max-width: 650px) {
+    left: ${(props) => (props.stateNavbarMenu ? "0px" : "-100%")};
+  }
   @media (max-width: 400px) {
     border-radius: 0;
     width: 100%;

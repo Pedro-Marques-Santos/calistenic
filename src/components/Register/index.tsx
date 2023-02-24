@@ -1,6 +1,5 @@
 import {
   Base,
-  ButtonGoogle,
   ButtonLogin,
   ButtonRegister,
   Container,
@@ -13,7 +12,7 @@ import {
 import validator from "validator";
 
 import logo from "../../assets/images/logo-final.png";
-import google from "../../assets/images/Google.svg";
+// import google from "../../assets/images/Google.svg";
 import { useContext, useState } from "react";
 import { AuthenticationContext } from "../../context/authentication";
 
@@ -32,14 +31,14 @@ export function Register() {
   const [error, setError] = useState("");
 
   function verifyRegister(name: string, password: string, error: string) {
-    if (!name) {
-      setError("Missing characters in name");
+    if (!password) {
+      setError("Password is missing characters!");
     }
     if (!email) {
       setError("Enter a valid email address!");
     }
-    if (!password) {
-      setError("Password is missing characters!");
+    if (!name) {
+      setError("Missing characters in name");
     }
     if (name && password && email) {
       setError("");
@@ -126,12 +125,12 @@ export function Register() {
         </ErrorOrPassword>
         <ButtonRegister onClick={handleRegister}>Register</ButtonRegister>
         <ButtonLogin onClick={goStateLogin}>Login</ButtonLogin>
-        <ButtonGoogle>
+        {/* <ButtonGoogle>
           <div>
             <img src={google} alt="" />
           </div>
           <div>Google</div>
-        </ButtonGoogle>
+        </ButtonGoogle> */}
       </Container>
     </Base>
   );

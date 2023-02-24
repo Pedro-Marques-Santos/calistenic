@@ -5,14 +5,14 @@ import { Introduction } from "./components/Introduction";
 import { AuthenticationProvider } from "./context/authentication";
 import { GlobalStyle } from "./styles/global";
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 export function App() {
   return (
     <AuthenticationProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="index" element={<Introduction />}></Route>
+          <Route path="/" element={<Introduction />}></Route>
         </Routes>
         <Routes>
           <Route path="authentication" element={<Authentication />}></Route>
