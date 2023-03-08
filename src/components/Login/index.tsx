@@ -13,7 +13,6 @@ import {
 import validator from "validator";
 
 import logo from "../../assets/images/logo-final.png";
-// import google from '../../assets/images/Google.svg';
 import { useContext, useState } from "react";
 import { AuthenticationContext } from "../../context/authentication";
 
@@ -30,14 +29,17 @@ export function Login() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
 
-  function verifyLogin(email: string, password: string) {
+  function verifyLogin(email: string, password: string, emailState: boolean) {
     if (!password) {
       setError("Password is missing characters!");
     }
-    if (!email) {
+    if (password) {
+      setError("");
+    }
+    if (!email || !emailState) {
       setError("Enter a valid email address!");
     }
-    if (password && email) {
+    if (email && emailState) {
       setError("");
     }
   }
@@ -45,11 +47,11 @@ export function Login() {
   async function handleLogin() {
     let emailState = false;
 
-    verifyLogin(email, password);
-
     if (validator.isEmail(email)) {
       emailState = true;
     }
+
+    verifyLogin(email, password, emailState);
 
     if (password && email && emailState) {
       let data = {
@@ -87,6 +89,10 @@ export function Login() {
     authentication?.dispatch({ type: "REGISTER" });
   }
 
+  function sendForgotPassword() {
+    navegate("/forgotpassword");
+  }
+
   return (
     <Base>
       <Container>
@@ -109,14 +115,12 @@ export function Login() {
         </Input>
         <ErrorOrPassword>
           <Error>{error}</Error>
-          <ForgetPassword>Forget Password?</ForgetPassword>
+          <ForgetPassword onClick={sendForgotPassword}>
+            Forget Password?
+          </ForgetPassword>
         </ErrorOrPassword>
         <ButtonLogin onClick={handleLogin}>Login</ButtonLogin>
         <ButtonRegister onClick={goStateLogin}>Register</ButtonRegister>
-        {/* <ButtonGoogle>
-          <div><img src={google} alt="" /></div>
-          <div>Google</div>
-        </ButtonGoogle> */}
       </Container>
     </Base>
   );

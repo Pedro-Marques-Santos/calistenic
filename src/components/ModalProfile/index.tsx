@@ -1,7 +1,13 @@
-import Modal from 'react-modal';
-import { Container, ImgProfile, ModifyProfile, Motivation, Name } from './styles';
+import Modal from "react-modal";
+import {
+  Container,
+  ImgProfile,
+  ModifyProfile,
+  Motivation,
+  Name,
+} from "./styles";
 
-import imgProfile from '../../assets/images/profile.jpg'
+import imgProfile from "../../assets/images/profile.jpg";
 
 interface IUserProfile {
   motivation: string;
@@ -10,20 +16,22 @@ interface IUserProfile {
 }
 
 interface ModalProfileProps {
-  stateModalProfile: boolean,
+  stateModalProfile: boolean;
   closeModalProfile: () => void;
   openModalMotivation: () => void;
   userProfile: IUserProfile;
 }
 
-export function ModalProfile({ 
-  stateModalProfile, 
-  closeModalProfile, 
-  openModalMotivation, 
-  userProfile }: ModalProfileProps) {
-
-  return(
-    <Modal isOpen={stateModalProfile} onRequestClose={closeModalProfile}
+export function ModalProfile({
+  stateModalProfile,
+  closeModalProfile,
+  openModalMotivation,
+  userProfile,
+}: ModalProfileProps) {
+  return (
+    <Modal
+      isOpen={stateModalProfile}
+      onRequestClose={closeModalProfile}
       overlayClassName="react-modal-overlay"
       className="react-modal-content"
       ariaHideApp={false}
@@ -31,19 +39,19 @@ export function ModalProfile({
       <button
         type="button"
         onClick={closeModalProfile}
-        className="react-modal-close">
-          <i className="fa-solid fa-xmark"></i>
+        className="react-modal-close"
+      >
+        <i className="fa-solid fa-xmark"></i>
       </button>
       <Container>
         <ImgProfile>
           <img src={imgProfile} alt="" />
         </ImgProfile>
-        <ModifyProfile>Change Photo</ModifyProfile>
         <Name>{userProfile.name}</Name>
-        <Motivation>
-          {userProfile.motivation}
-        </Motivation>
-        <ModifyProfile onClick={openModalMotivation}>Change Motivation</ModifyProfile>
+        <Motivation>{userProfile.motivation}</Motivation>
+        <ModifyProfile onClick={openModalMotivation}>
+          Change Motivation
+        </ModifyProfile>
       </Container>
     </Modal>
   );
